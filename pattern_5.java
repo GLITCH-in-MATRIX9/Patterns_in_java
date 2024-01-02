@@ -1,50 +1,43 @@
-import java.util.Scanner;
+
+    import java.util.Scanner;
 
 public class pattern_5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the number of rows (odd): ");
+        System.out.print("Enter the size of the diamond (odd number): ");
         int n = scanner.nextInt();
 
         if (n % 2 == 0) {
-            System.out.println("Please enter an odd number for a proper diamond pattern.");
+            System.out.println("Please enter an odd number for a diamond with an odd number of stars.");
             return;
         }
 
+        printOddDiamond(n);
+    }
+
+    static void printOddDiamond(int n) {
         int spaces = n / 2;
         int stars = 1;
 
-        // Upper part of the diamond
-        for (int i = 1; i <= n; i += 2) {
-            printSpaces(spaces);
-            printStars(stars);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < spaces; j++) {
+                System.out.print(" ");
+            }
+
+            for (int k = 0; k < stars; k++) {
+                System.out.print("*");
+            }
+
             System.out.println();
-            spaces--;
-            stars += 2;
-        }
 
-        // Lower part of the diamond
-        spaces = 1;
-        stars = n - 2;
-        for (int i = n - 2; i >= 1; i -= 2) {
-            printSpaces(spaces);
-            printStars(stars);
-            System.out.println();
-            spaces++;
-            stars -= 2;
-        }
-    }
-
-    static void printSpaces(int count) {
-        for (int i = 1; i <= count; i++) {
-            System.out.print(" ");
-        }
-    }
-
-    static void printStars(int count) {
-        for (int i = 1; i <= count; i++) {
-            System.out.print("*");
+            if (i < n / 2) {
+                spaces--;
+                stars += 2;
+            } else {
+                spaces++;
+                stars -= 2;
+            }
         }
     }
 }
